@@ -1,11 +1,11 @@
-# PythonFDR v1.0.0
+# PythonFDR v0.0.0
 
 **Copyright (C) 2025  Vilgot Szasz Kero
 PythonFDR comes with ABSOLUTELY NO WARRANTY; for details see COPYRIGHT.txt**
 
 ## Introduction
 
-This is a free, open-source flight data recorder for Microsoft Flight Simulator written entirely in Python. It uses pysimconnect to fetch data from the simulator.
+This is a free, open-source flight data recorder for Microsoft Flight Simulator written entirely in Python. It uses pysimconnect to fetch data from the simulator, and pygame to read joystick input.
 
 *This is a personal project*, so it is obviously very limited compared to paid services.
 

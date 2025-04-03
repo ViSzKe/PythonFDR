@@ -10,6 +10,13 @@ import os
 from datetime import datetime, timezone
 from time import sleep
 
+import pygame
+os.environ["SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS"] = "1" # Allows joystick detection when the program is not in focus
+pygame.init()
+pygame.joystick.init()
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
+
 log_entry_counter = 0
 
 
@@ -26,7 +33,7 @@ simvars_pct = [
 
 
 def license_notice():
-    version = "v1.0.0" # version
+    version = "v0.0.0" # version
 
     print("PythonFDR " + version + "  Copyright (C) 2025  Vilgot Szasz Kero")
     print("PythonFDR comes with ABSOLUTELY NO WARRANTY; for details see COPYRIGHT.txt.")
@@ -53,6 +60,14 @@ def record_simvars_pct():
     return (log_entry)
 
 
+def log_joystick_position():
+    joystick.init()
+    pygame.event.pump()
+    joystick_x = joystick.get_axis(0)
+    joystick_y = joystick.get_axis(1)
+    return (str(joystick_x) + ":" + str(joystick_y))
+
+
 def write_to_log(log_entry):
     with open("fdr.log", "a") as logfile:
         global log_entry_counter
@@ -70,8 +85,10 @@ except FileNotFoundError:
 
 license_notice()
 
+# Main loop
 while True:
     log_entry = record_simvars_pct()
+    log_entry = log_entry + ":" + log_joystick_position()
     write_to_log(log_entry)
     print("PythonFDR: LOG ENTRY WRITTEN TO FILE")
     print("")
