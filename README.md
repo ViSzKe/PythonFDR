@@ -1,11 +1,11 @@
-# PythonFDR v1.0.0
+# PythonFDR v1.1.0
 
 **Copyright (C) 2025  Vilgot Szasz Kero
 PythonFDR comes with ABSOLUTELY NO WARRANTY; for details see COPYRIGHT.txt**
 
 ## Introduction
 
-This is a free, open-source flight data recorder for Microsoft Flight Simulator written entirely in Python. It uses pysimconnect to fetch data from the simulator.
+This is a free, open-source flight data recorder for Microsoft Flight Simulator written entirely in Python. It uses pysimconnect to fetch data from the simulator, and pygame to read joystick input.
 
 *This is a personal project*, so it is obviously very limited compared to paid services.
 
@@ -37,5 +37,5 @@ The included `Log_Decoder_Plotter` will plot the data on a graph. If you want to
 
 ### Log entry format:
 ```
-[HHMMSS]:[AILERON POSITION]:[AILERON TRIM PCT]:[AILERON LEFT DEFLECTION PCT]:[AILERON RIGHT DEFLECTION PCT]:[ELEVATOR POSITION]:[ELEVATOR TRIM PCT]:[ELEVATOR DEFLECTION PCT]
+[HHMMSS]:[AILERON POSITION(simvar)]:[AILERON TRIM PCT(simvar)]:[AILERON LEFT DEFLECTION PCT(simvar)]:[AILERON RIGHT DEFLECTION PCT(simvar)]:[ELEVATOR POSITION(simvar)]:[ELEVATOR TRIM PCT(simvar)]:[ELEVATOR DEFLECTION PCT(simvar)]:[JOYSTICK X(input)]:[JOYSTICK Y(input)]
 ```
