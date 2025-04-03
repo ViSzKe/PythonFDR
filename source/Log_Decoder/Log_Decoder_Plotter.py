@@ -8,19 +8,21 @@ import matplotlib.dates as mdates
 from datetime import datetime
 
 # Configuration for variables
-simvars_pct = [
-    "AILERON COMMANDED POSITION",        # parts[1]
+logged_data = [
+    "AILERON COMMANDED DEFLECTION",        # parts[1]
     "AILERON TRIM PCT",        # parts[2]
     "AILERON LEFT DEFLECTION PCT",  # parts[3]
     "AILERON RIGHT DEFLECTION PCT", # parts[4]
-    "ELEVATOR COMMANDED POSITION",       # parts[5]
+    "ELEVATOR COMMANDED DEFLECTION",       # parts[5]
     "ELEVATOR TRIM PCT",       # parts[6]
-    "ELEVATOR DEFLECTION PCT"  # parts[7]
+    "ELEVATOR DEFLECTION PCT", # parts[7]
+    "JOYSTICK X",   # parts[8]
+    "JOYSTICK Y",   # parts[9]
 ]
 
 # Parse logfile
 timestamps = []
-data = {var: [] for var in simvars_pct}
+data = {var: [] for var in logged_data}
 
 with open('fdr.log') as f:
     for line in f:
@@ -29,7 +31,7 @@ with open('fdr.log') as f:
         timestamps.append(dt)
         
         # Map parts[1-7] to corresponding variables
-        for i, var in enumerate(simvars_pct, start=1):
+        for i, var in enumerate(logged_data, start=1):
             data[var].append(float(parts[i]))
 
 # Create two separate figures for ailerons and elevators
@@ -38,13 +40,14 @@ fig_elevators, ax_elevators = plt.subplots(figsize=(14, 7))
 
 # Plot ailerons on one graph
 aileron_vars = [
-    "AILERON COMMANDED POSITION",
+    "JOYSTICK X",
+    "AILERON COMMANDED DEFLECTION",
     "AILERON TRIM PCT",
     "AILERON LEFT DEFLECTION PCT",
     "AILERON RIGHT DEFLECTION PCT"
 ]
-line_styles = ['-', ':', '--', '--']
-colors = ['blue', 'orange', 'red', 'green']
+line_styles = ['-', '-', ':', '--', '--']
+colors = ['black', 'blue', 'orange', 'red', 'green']
 
 for var, style, color in zip(aileron_vars, line_styles, colors):
     ax_ailerons.plot(timestamps, data[var], linestyle=style, color=color, label=var)
@@ -58,12 +61,13 @@ plt.setp(ax_ailerons.xaxis.get_majorticklabels(), rotation=45)
 
 # Plot elevators on another graph
 elevator_vars = [
-    "ELEVATOR COMMANDED POSITION",
+    "JOYSTICK Y",
+    "ELEVATOR COMMANDED DEFLECTION",
     "ELEVATOR TRIM PCT",
     "ELEVATOR DEFLECTION PCT"
 ]
 
-for var, style, color in zip(elevator_vars, line_styles[:3], colors[:3]):
+for var, style, color in zip(elevator_vars, line_styles, colors):
     ax_elevators.plot(timestamps, data[var], linestyle=style, color=color, label=var)
 
 ax_elevators.set_title('Elevator Control Surface Positions', fontsize=14)
