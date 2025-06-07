@@ -1,3 +1,3 @@
 @ECHO OFF
-.\venv\Scripts\python.exe .\source\PythonFDR.py
+.\python-embed\python.exe .\source\PythonFDR.py
 PAUSE
