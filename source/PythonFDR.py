@@ -33,7 +33,7 @@ simvars_pct = [
 
 
 def license_notice():
-    version = "v1.1.0" # version
+    version = "v1.1.1" # version
 
     print("PythonFDR " + version + "  Copyright (C) 2025  Vilgot Szasz Kero")
     print("PythonFDR comes with ABSOLUTELY NO WARRANTY; for details see COPYRIGHT.txt.")

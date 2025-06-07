@@ -1,4 +1,4 @@
-# PythonFDR v1.1.0
+# PythonFDR v1.1.1
 
 **Copyright (C) 2025  Vilgot Szasz Kero
 PythonFDR comes with ABSOLUTELY NO WARRANTY; for details see COPYRIGHT.txt**
